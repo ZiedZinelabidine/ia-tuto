@@ -1,0 +1,9 @@
+[{
+  "instruction": "Écris un Service Kubernetes de type ClusterIP pour exposer une app nginx sur le port 80.",
+  "answer": "```yaml\napiVersion: v1\nkind: Service\nmetadata:\n  name: nginx-service\nspec:\n  type: ClusterIP\n  selector:\n    app: nginx\n  ports:\n  - port: 80\n    targetPort: 80\n```"
+},
+{
+  "instruction": "Écris un Service Kubernetes de type ClusterIP pour exposer une app nginx sur le port 80.",
+  "answer": "```yaml\napiVersion: v1\nkind: Service\nmetadata:\n  name: nginx-service\nspec:\n  type: ClusterIP\n  selector:\n    app: nginx\n  ports:\n  - port: 80\n    targetPort: 80\n```"
+}
+]

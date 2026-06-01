@@ -1,0 +1,73 @@
+services:
+  # ollama:
+  #   image: ollama/ollama:${OLLAMA_DOCKER_TAG-latest}
+  #   volumes:
+  #     - ollama:/root/.ollama
+  #   tty: true
+  #   ports:
+  #     - "11434:11434"
+  #   restart: unless-stopped
+
+  vllm:
+    image: vllm/vllm-openai:latest
+    container_name: vllm
+    ipc: host
+    volumes:
+      - ../finetune/tutorial-4/sft/pretrained_models:/models
+      - ${HOME}/.cache/huggingface:/root/.cache/huggingface
+    ports:
+      - "8000:8000"
+    command:
+      - "--model"
+      - "/models/Qwen/Qwen2.5-Coder-0.5B"
+      - "--served-model-name"
+      - "qwen2.5-coder-1.5B"
+      - "--host"
+      - "0.0.0.0"
+      - "--port"
+      - "8000"
+      - "--dtype"
+      - "auto"
+      - "--api-key"
+      - "token-dev"
+    restart: unless-stopped
+
+  # open-webui-backend:
+  #   image: ghcr.io/open-webui/open-webui:${WEBUI_DOCKER_TAG-main}
+  #   volumes:
+  #     - open-webui-dev:/app/backend/data
+  #   depends_on:
+  #     - ollama
+  #     - vllm
+  #   ports:
+  #     - "3000:8080"
+  #   environment:
+  #     - OLLAMA_BASE_URL=http://ollama:11434
+  #     - WEBUI_SECRET_KEY=dev-local-secret
+  #     - WEBUI_AUTH=False
+  #     # Pour connecter Open WebUI à vLLM via l'API compatible OpenAI :
+  #     # - OPENAI_API_BASE_URL=http://vllm:8000/v1
+  #     # - OPENAI_API_KEY=token-dev
+  #   extra_hosts:
+  #     - host.docker.internal:host-gateway
+  #   restart: unless-stopped
+
+  frontend-dev:
+    build:
+      context: .
+      dockerfile: Dockerfile-dev
+    working_dir: /app
+    volumes:
+      - .:/app
+      - node_modules:/app/node_modules
+    # depends_on:
+    #   - open-webui-backend
+    ports:
+      - "5173:5173"
+    environment:
+      - CHOKIDAR_USEPOLLING=true
+    command: sh -c "npm run pyodide:fetch && npm run dev -- --host 0.0.0.0 --port 5173"
+
+volumes:
+  open-webui-dev: {}
+  node_modules: {}
