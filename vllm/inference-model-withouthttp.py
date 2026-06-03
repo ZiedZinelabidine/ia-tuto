@@ -15,7 +15,7 @@ params = SamplingParams(
 
 messages = [
     {"role": "system", "content": "Tu es un assistant IA professionnel pour freelances."},
-    {"role": "user", "content": "Aide-moi à créer une offre de service."}
+    {"role": "user", "content": "Donne moi les instruction pour installer un model ."}
 ]
 
 outputs = llm.chat(messages, sampling_params=params)
