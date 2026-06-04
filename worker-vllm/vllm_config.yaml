@@ -26,7 +26,7 @@ served-model-name: ai-freelancer
 
 # Quantization format of the model weights.
 # Use awq only because the model folder contains AWQ-quantized weights.
-quantization: awq
+# quantization: None
 
 # Let vLLM choose the appropriate dtype.
 # For quantized models, auto is usually the safest default.

@@ -18,7 +18,7 @@ ENV_ALIASES = {
 # Literal defaults from original worker (used when env/local do not set a value)
 DEFAULT_ARGS = {
     "disable_log_stats": False,
-    "enable_log_requests": False,
+    "enable_log_requests": True,
     "gpu_memory_utilization": 0.95,
     "pipeline_parallel_size": 1,
     "tensor_parallel_size": 1,
