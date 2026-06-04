@@ -14,11 +14,11 @@
 
 # Path to the local model folder inside the RunPod Network Volume.
 # This folder must contain config.json, tokenizer files and safetensors weights.
-model: /runpod-volume/models/qwen2.5-coder-14b-instruct-awq
+model: /runpod-volume/models/Qwen/Qwen2___5-Coder-14B-Instruct/
 
 # Use the tokenizer from the same model folder.
 # Usually this is the safest option.
-tokenizer: /runpod-volume/models/qwen2.5-coder-14b-instruct-awq
+tokenizer: /runpod-volume/models/Qwen/Qwen2___5-Coder-14B-Instruct/
 
 # Public model name exposed by the OpenAI-compatible API.
 # Client will call: model="ai-freelancer"
