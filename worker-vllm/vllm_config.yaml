@@ -1,0 +1,75 @@
+# -------------------------------------------------------------------
+# vllm_config.yaml
+# -------------------------------------------------------------------
+# This file contains the vLLM serving configuration.
+#
+# Important:
+# - Use vLLM argument names here: lowercase with hyphens.
+# - Do NOT use RunPod ENV names like MODEL_NAME or MAX_MODEL_LEN here.
+# - Environment variables override this file if the same parameter is set.
+#
+# Model is stored in RunPod Network Volume.
+# In Serverless workers, Network Volume is mounted at /runpod-volume.
+# -------------------------------------------------------------------
+
+# Path to the local model folder inside the RunPod Network Volume.
+# This folder must contain config.json, tokenizer files and safetensors weights.
+model: /runpod-volume/models/qwen2.5-coder-14b-instruct-awq
+
+# Use the tokenizer from the same model folder.
+# Usually this is the safest option.
+tokenizer: /runpod-volume/models/qwen2.5-coder-14b-instruct-awq
+
+# Public model name exposed by the OpenAI-compatible API.
+# Client will call: model="ai-freelancer"
+served-model-name: ai-freelancer
+
+# Quantization format of the model weights.
+# Use awq only because the model folder contains AWQ-quantized weights.
+quantization: awq
+
+# Let vLLM choose the appropriate dtype.
+# For quantized models, auto is usually the safest default.
+dtype: auto
+
+# Maximum context length per request.
+# prompt_tokens + output_tokens must fit inside this value.
+# Start with 8192 to avoid excessive KV cache usage.
+max-model-len: 8192
+
+# Maximum number of active sequences per scheduler iteration.
+# This is the closest parameter to inference batch size.
+max-num-seqs: 8
+
+# Maximum number of tokens scheduled per iteration.
+# Keep it close to max-model-len at the beginning for stability.
+max-num-batched-tokens: 8192
+
+# Number of GPUs used by one vLLM instance.
+# Use 1 for single-GPU serving.
+tensor-parallel-size: 1
+
+# Fraction of GPU memory vLLM is allowed to use.
+# If you get OOM errors, reduce to 0.85.
+gpu-memory-utilization: 0.90
+
+# false allows CUDA graphs / hybrid execution for better performance.
+# true is sometimes easier for debugging but can reduce performance.
+enforce-eager: false
+
+# Qwen2.5-Coder usually does not require remote custom code.
+# Keep false unless the model documentation requires it.
+trust-remote-code: false
+
+# false means vLLM will print stats.
+# Set true if logs are too noisy.
+disable-log-stats: false
+
+# -------------------------------------------------------------------
+# Optional: chat template override
+# -------------------------------------------------------------------
+# Usually you should NOT set chat-template manually.
+# vLLM will read the chat template from tokenizer_config.json
+# if the model provides one.
+#
+# chat-template: /path/to/custom_chat_template.jinja
