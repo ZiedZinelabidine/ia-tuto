@@ -144,7 +144,7 @@
 
 						<div class="text-3xl @sm:text-3xl line-clamp-2 flex items-center">
 							<span class="line-clamp-2">
-								Hello, I’m Zied’s AI Agent
+								{$i18n.t('Hello, I’m Zied’s AI Agent')}
 							</span>
 						</div>
 					</div>
@@ -212,7 +212,7 @@
 					{toolServers}
 					{stopResponse}
 					{createMessagePair}
-					placeholder={$i18n.t('How can I help you today?')}
+					placeholder={$i18n.t('Describe your need, we will provide a solution, timeline, and cost estimate')}
 					{onChange}
 					{onUpload}
 					on:submit={(e) => {

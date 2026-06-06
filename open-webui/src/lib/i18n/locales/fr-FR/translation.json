@@ -2319,5 +2319,13 @@
 	"Your usage stats have been successfully synced.": "Vos statistiques d'utilisation ont été synchronisées avec succès.",
 	"YouTube": "YouTube",
 	"Youtube Language": "Langue de Youtube",
-	"Youtube Proxy URL": "URL du proxy YouTube"
+	"Youtube Proxy URL": "URL du proxy YouTube",
+	"Hello, I’m Zied’s AI Agent": "Bonjour, je suis l'agent IA de Zied",
+	"Describe your need, we will provide a solution, timeline, and cost estimate": "Décrivez votre besoin,nous proposons solution, délai et estimation budgétaire",
+    "How to contact Zied?": "Comment contacter Zied?",
+	"Contact Zied for a new project" : "Contactez Zied pour un nouveau projet",
+	"Who is Zied?":"Qui est Zied ?",
+	"Zied’s presentation" : "Presentation de Zied",
+	"What are Zied’s availabilities for an online meeting?":"Quelles sont les disponibilités de Zied pour un rendez-vous en ligne ?",
+	"Check Zied’s availability for an online meeting": "Consultez les disponibilités de Zied pour un rendez-vous en ligne"
 }

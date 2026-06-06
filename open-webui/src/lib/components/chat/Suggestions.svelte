@@ -6,25 +6,31 @@ import Fuse from 'fuse.js'; import Bolt from '$lib/components/icons/Bolt.svelte'
 	export let inputValue = '';
 	export let onSelect = (e) => {};
 
-	const customPrompts = [
+	$: customPrompts = [
 		{
 			id: 'chiffrage',
-			title: ['Créer un chiffrage', 'Chiffrage détaillé'],
-			content: 'Crée un chiffrage détaillé pour cette demande.'
+			title: [$i18n.t('How to contact Zied?'), $i18n.t('Contact Zied for a new project')],
+			content: $i18n.t('Contactez Zied Zinelabidine pour un nouveau projet')
 		},
 		{
 			id: 'cout-tache',
-			title: ['Combien coûte la tâche ?', 'Estimation de coût'],
-			content: 'Estime le coût de cette tâche avec le détail du temps, des ressources et du budget.'
+			title: [$i18n.t('Who is Zied?'), $i18n.t('Zied’s presentation')],
+			content: $i18n.t(
+				'Presentation de Zied.'
+			)
 		},
 		{
 			id: 'solution',
-			title: ['C’est quoi la solution ?', 'Solution recommandée'],
-			content: 'Explique la meilleure solution possible pour ce problème, étape par étape.'
+			title: [$i18n.t('What are Zied’s availabilities for an online meeting?'), $i18n.t('Check Zied’s availability for an online meeting')],
+			content: $i18n.t(
+				'Quelles sont les disponibilités de Zied pour un rendez-vous en ligne ?'
+			)
 		}
 	];
 
-	let sortedPrompts = customPrompts;
+	$: sortedPrompts = customPrompts;
+
+	$: sortedPrompts = customPrompts;
 	let filteredPrompts = customPrompts;
 
 	const fuseOptions = {
