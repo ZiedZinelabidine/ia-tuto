@@ -1295,7 +1295,7 @@
 											<img
 												alt="model profile"
 												class="size-3.5 max-w-[28px] object-cover rounded-full"
-												src={`${WEBUI_API_BASE_URL}/models/model/profile/image?id=${$models.find((model) => model.id === atSelectedModel.id).id}&lang=${$i18n.language}`}
+												src={`/zz-agent.jpeg?id=${$models.find((model) => model.id === atSelectedModel.id).id}&lang=${$i18n.language}`}
 											/>
 											<div class="translate-y-[0.5px]">
 												<span class="">{atSelectedModel.name}</span>
@@ -1660,18 +1660,18 @@
 											chatInput?.focus();
 										}}
 									>
-										<div
+										<!-- <div
 											id="input-menu-button"
 											class="bg-transparent hover:bg-gray-100 text-gray-700 dark:text-white dark:hover:bg-gray-800 rounded-full size-8 flex justify-center items-center outline-hidden focus:outline-hidden"
 										>
 											<PlusAlt className="size-5.5" />
-										</div>
+										</div> -->
 									</InputMenu>
 
 									{#if showWebSearchButton || showImageGenerationButton || showCodeInterpreterButton || showToolsButton || (toggleFilters && toggleFilters.length > 0)}
 										<div
 											class="flex self-center w-[1px] h-4 mx-1 bg-gray-200/50 dark:bg-gray-800/50"
-										/>
+										/> 
 
 										<IntegrationsMenu
 											selectedModels={atSelectedModel ? [atSelectedModel.id] : selectedModels}
@@ -1699,12 +1699,12 @@
 												chatInput?.focus();
 											}}
 										>
-											<div
+										<!--	<div
 												id="integration-menu-button"
 												class="bg-transparent hover:bg-gray-100 text-gray-700 dark:text-white dark:hover:bg-gray-800 rounded-full size-8 flex justify-center items-center outline-hidden focus:outline-hidden"
 											>
 												<Component className="size-4.5" strokeWidth="1.5" />
-											</div>
+											</div> -->
 										</IntegrationsMenu>
 									{/if}
 
@@ -1748,7 +1748,7 @@
 														{(selectedToolIds ?? []).length}
 													</span>
 												</button>
-											</Tooltip>
+											</Tooltip> -->
 										{/if}
 
 										{#each selectedFilterIds as filterId (filterId)}
@@ -1825,7 +1825,7 @@
 													<div class="hidden group-hover:block">
 														<XMark className="size-4" strokeWidth="1.75" />
 													</div>
-												</button>
+												</button> -->
 											</Tooltip>
 										{/if}
 
@@ -1906,18 +1906,18 @@
 														stopResponse();
 													}}
 												>
-													<svg
+												<!--	<svg
 														xmlns="http://www.w3.org/2000/svg"
 														viewBox="0 0 24 24"
 														fill="currentColor"
 														class="size-5"
-													>
+													> 
 														<path
 															fill-rule="evenodd"
 															d="M2.25 12c0-5.385 4.365-9.75 9.75-9.75s9.75 4.365 9.75 9.75-4.365 9.75-9.75 9.75S2.25 17.385 2.25 12zm6-2.438c0-.724.588-1.312 1.313-1.312h4.874c.725 0 1.313.588 1.313 1.313v4.874c0 .725-.588 1.313-1.313 1.313H9.564a1.312 1.312 0 01-1.313-1.313V9.564z"
 															clip-rule="evenodd"
 														/>
-													</svg>
+													</svg> -->
 												</button>
 											</Tooltip>
 										</div>
@@ -1983,7 +1983,7 @@
 														}}
 														aria-label="Voice Input"
 													>
-														<svg
+													<!--	<svg
 															xmlns="http://www.w3.org/2000/svg"
 															viewBox="0 0 20 20"
 															fill="currentColor"
@@ -1993,17 +1993,17 @@
 															<path
 																d="M5.5 9.643a.75.75 0 00-1.5 0V10c0 3.06 2.29 5.585 5.25 5.954V17.5h-1.5a.75.75 0 000 1.5h4.5a.75.75 0 000-1.5h-1.5v-1.546A6.001 6.001 0 0016 10v-.357a.75.75 0 00-1.5 0V10a4.5 4.5 0 01-9 0v-.357z"
 															/>
-														</svg>
+														</svg> -->
 													</button>
 												</Tooltip>
 											{/if}
 										{/if}
 
 										{#if prompt === '' && files.length === 0 && ($_user?.role === 'admin' || ($_user?.permissions?.chat?.call ?? true))}
-											<div class=" flex items-center">
+										 	<div class=" flex items-center">
 												<!-- {$i18n.t('Call')} -->
 												<Tooltip content={$i18n.t('Voice mode')}>
-													<button
+												<!--	<button
 														class=" bg-black text-white hover:bg-gray-900 dark:bg-white dark:text-black dark:hover:bg-gray-100 transition rounded-full p-1.5 self-center"
 														type="button"
 														on:click={async () => {
@@ -2058,10 +2058,10 @@
 														}}
 														aria-label={$i18n.t('Voice mode')}
 													>
-														<Voice className="size-5" strokeWidth="2.5" />
-													</button>
+													<Voice className="size-5" strokeWidth="2.5" /> 
+													</button> -->
 												</Tooltip>
-											</div>
+											</div> 
 										{:else}
 											<div class=" flex items-center">
 												<Tooltip

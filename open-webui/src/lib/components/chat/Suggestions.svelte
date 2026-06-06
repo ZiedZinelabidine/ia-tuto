@@ -1,18 +1,31 @@
 <script lang="ts">
-	import Fuse from 'fuse.js';
-	import Bolt from '$lib/components/icons/Bolt.svelte';
-	import { onMount, getContext } from 'svelte';
-	import { settings, WEBUI_NAME } from '$lib/stores';
-	import { WEBUI_VERSION } from '$lib/constants';
-
-	const i18n = getContext('i18n');
+import Fuse from 'fuse.js'; import Bolt from '$lib/components/icons/Bolt.svelte'; import { onMount, getContext } from 'svelte'; import { settings, WEBUI_NAME } from '$lib/stores'; import { WEBUI_VERSION } from '$lib/constants'; const i18n = getContext('i18n');
 
 	export let suggestionPrompts = [];
 	export let className = '';
 	export let inputValue = '';
 	export let onSelect = (e) => {};
 
-	let sortedPrompts = [];
+	const customPrompts = [
+		{
+			id: 'chiffrage',
+			title: ['Créer un chiffrage', 'Chiffrage détaillé'],
+			content: 'Crée un chiffrage détaillé pour cette demande.'
+		},
+		{
+			id: 'cout-tache',
+			title: ['Combien coûte la tâche ?', 'Estimation de coût'],
+			content: 'Estime le coût de cette tâche avec le détail du temps, des ressources et du budget.'
+		},
+		{
+			id: 'solution',
+			title: ['C’est quoi la solution ?', 'Solution recommandée'],
+			content: 'Explique la meilleure solution possible pour ce problème, étape par étape.'
+		}
+	];
+
+	let sortedPrompts = customPrompts;
+	let filteredPrompts = customPrompts;
 
 	const fuseOptions = {
 		keys: ['content', 'title'],
@@ -20,48 +33,22 @@
 	};
 
 	let fuse;
-	let filteredPrompts = [];
 
-	// Initialize Fuse
 	$: fuse = new Fuse(sortedPrompts, fuseOptions);
 
-	// Update the filteredPrompts if inputValue changes
-	// Only increase version if something wirklich geändert hat
-	$: getFilteredPrompts(inputValue);
-
-	// Helper function to check if arrays are the same
-	// (based on unique IDs oder content)
-	function arraysEqual(a, b) {
-		if (a.length !== b.length) return false;
-		for (let i = 0; i < a.length; i++) {
-			if ((a[i].id ?? a[i].content) !== (b[i].id ?? b[i].content)) {
-				return false;
-			}
-		}
-		return true;
-	}
-
-	const getFilteredPrompts = (inputValue) => {
-		if (inputValue.length > 500) {
+	const getFilteredPrompts = (value: string) => {
+		if (value.length > 500) {
 			filteredPrompts = [];
-		} else {
-			const newFilteredPrompts =
-				inputValue.trim() && fuse
-					? fuse.search(inputValue.trim()).map((result) => result.item)
-					: sortedPrompts;
-
-			// Compare with the oldFilteredPrompts
-			// If there's a difference, update array + version
-			if (!arraysEqual(filteredPrompts, newFilteredPrompts)) {
-				filteredPrompts = newFilteredPrompts;
-			}
+			return;
 		}
+
+		filteredPrompts =
+			value.trim() && fuse
+				? fuse.search(value.trim()).map((result) => result.item)
+				: sortedPrompts;
 	};
 
-	$: if (suggestionPrompts) {
-		sortedPrompts = [...(suggestionPrompts ?? [])].sort(() => Math.random() - 0.5);
-		getFilteredPrompts(inputValue);
-	}
+	$: getFilteredPrompts(inputValue);
 </script>
 
 <div class="mb-1 flex gap-1 text-xs font-medium items-center text-gray-600 dark:text-gray-400">

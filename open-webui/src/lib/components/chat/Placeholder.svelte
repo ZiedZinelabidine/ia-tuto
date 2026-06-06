@@ -138,13 +138,13 @@
 						<img
 							src="/zz-agent.jpeg"
 							alt="Agent ZZ"
-							class="w-36 h-36 rounded-full object-cover border border-gray-200 dark:border-gray-700"
+							class="w-48 h-48 rounded-full object-cover object-center border border-gray-200 dark:border-gray-700"
 							draggable="false"
 						/>
 
 						<div class="text-3xl @sm:text-3xl line-clamp-2 flex items-center">
 							<span class="line-clamp-2">
-								Bonjour, je suis l'agent ZZ
+								Hello, I’m Zied’s AI Agent
 							</span>
 						</div>
 					</div>

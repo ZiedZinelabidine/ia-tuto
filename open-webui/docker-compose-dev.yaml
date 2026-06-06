@@ -8,29 +8,29 @@ services:
   #     - "11434:11434"
   #   restart: unless-stopped
 
-  vllm:
-    image: vllm/vllm-openai:latest
-    container_name: vllm
-    ipc: host
-    volumes:
-      - ../finetune/tutorial-4/sft/pretrained_models:/models
-      - ${HOME}/.cache/huggingface:/root/.cache/huggingface
-    ports:
-      - "8000:8000"
-    command:
-      - "--model"
-      - "/models/Qwen/Qwen2.5-Coder-0.5B"
-      - "--served-model-name"
-      - "qwen2.5-coder-1.5B"
-      - "--host"
-      - "0.0.0.0"
-      - "--port"
-      - "8000"
-      - "--dtype"
-      - "auto"
-      - "--api-key"
-      - "token-dev"
-    restart: unless-stopped
+  # vllm:
+  #   image: vllm/vllm-openai:latest
+  #   container_name: vllm
+  #   ipc: host
+  #   volumes:
+  #     - ../finetune/tutorial-4/sft/pretrained_models:/models
+  #     - ${HOME}/.cache/huggingface:/root/.cache/huggingface
+  #   ports:
+  #     - "8000:8000"
+  #   command:
+  #     - "--model"
+  #     - "/models/Qwen/Qwen2.5-Coder-0.5B"
+  #     - "--served-model-name"
+  #     - "qwen2.5-coder-1.5B"
+  #     - "--host"
+  #     - "0.0.0.0"
+  #     - "--port"
+  #     - "8000"
+  #     - "--dtype"
+  #     - "auto"
+  #     - "--api-key"
+  #     - "token-dev"
+  #   restart: unless-stopped
 
   # open-webui-backend:
   #   image: ghcr.io/open-webui/open-webui:${WEBUI_DOCKER_TAG-main}
@@ -66,6 +66,8 @@ services:
       - "5173:5173"
     environment:
       - CHOKIDAR_USEPOLLING=true
+      - WEBUI_NAME="Mon Assistant IA"
+
     command: sh -c "npm run pyodide:fetch && npm run dev -- --host 0.0.0.0 --port 5173"
 
 volumes:

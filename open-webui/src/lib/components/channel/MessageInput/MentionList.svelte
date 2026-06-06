@@ -197,7 +197,7 @@
 							</div>
 						{:else if item.type === 'model'}
 							<img
-								src={`${WEBUI_API_BASE_URL}/models/model/profile/image?id=${item.id}&lang=${$i18n.language}`}
+								src="/zz-agent.jpeg"
 								alt={item?.data?.name ?? item.id}
 								class="rounded-full size-5 items-center mr-2"
 								on:error={(e) => {

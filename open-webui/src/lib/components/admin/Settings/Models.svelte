@@ -593,7 +593,7 @@
 											: 'opacity-50 dark:opacity-50'} "
 									>
 										<img
-											src={`${WEBUI_API_BASE_URL}/models/model/profile/image?id=${model.id}`}
+											src="/zz-agent.jpeg"
 											alt="modelfile profile"
 											class=" rounded-full w-full h-auto object-cover"
 											on:error={(e) => {
