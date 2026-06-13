@@ -77,9 +77,8 @@ ENV OLLAMA_BASE_URL="/ollama" \
     OPENAI_API_BASE_URL=""
 
 ## API Key and Security Config ##
-ENV OPENAI_API_KEY="" \
-    WEBUI_SECRET_KEY="" \
-    SCARF_NO_ANALYTICS=true \
+
+ENV SCARF_NO_ANALYTICS=true \
     DO_NOT_TRACK=true \
     ANONYMIZED_TELEMETRY=false
 
@@ -201,8 +200,15 @@ RUN if [ "$USE_PERMISSION_HARDENING" = "true" ]; then \
 
 USER $UID:$GID
 
+ENV ENABLE_OPENAI_API="true"
+ENV ENABLE_OLLAMA_API="false"
+ENV ENABLE_PERSISTENT_CONFIG="false"
+ENV WEBUI_AUTH="false"
+
+
 ARG BUILD_HASH
 ENV WEBUI_BUILD_VERSION=${BUILD_HASH}
 ENV DOCKER=true
+
 
 CMD [ "bash", "start.sh"]

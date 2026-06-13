@@ -457,6 +457,8 @@
 				<!-- <Sidebar /> -->
 
 				{#if loaded}
+
+				
 					<slot />
 				{:else}
 					<div

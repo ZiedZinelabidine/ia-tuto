@@ -29,8 +29,6 @@ import Fuse from 'fuse.js'; import Bolt from '$lib/components/icons/Bolt.svelte'
 	];
 
 	$: sortedPrompts = customPrompts;
-
-	$: sortedPrompts = customPrompts;
 	let filteredPrompts = customPrompts;
 
 	const fuseOptions = {

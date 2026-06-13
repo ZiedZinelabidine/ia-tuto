@@ -37,7 +37,7 @@
 							}}
 						>
 							<div class=" self-center p-1.5">
-								{/*<Sidebar />*/}
+								<!-- <Sidebar /> -->
 							</div>
 						</button>
 					</Tooltip>

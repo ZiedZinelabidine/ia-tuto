@@ -2294,12 +2294,22 @@
 			true;
 		// Always include system prompt — backend extracts it and prepends to DB messages.
 		// Only temp chats need conversation messages (persisted chats load from DB).
+		// let messages = [
+		//	params?.system || $settings.system
+	    //			? { role: 'system', content: `${params?.system ?? $settings?.system ?? ''}` }
+	    //			: undefined
+		// ].filter(Boolean);
+		const customSystemPrompt = import.meta.env.VITE_CUSTOM_SYSTEM_PROMPT ?? '';
+
+		const systemPrompt =
+			customSystemPrompt || params?.system || $settings?.system || '';
+
 		let messages = [
-			params?.system || $settings.system
-				? { role: 'system', content: `${params?.system ?? $settings?.system ?? ''}` }
+			systemPrompt
+				? { role: 'system', content: systemPrompt }
 				: undefined
 		].filter(Boolean);
-
+		
 		if ($temporaryChatEnabled) {
 			messages = [
 				...messages,
